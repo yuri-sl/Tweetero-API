@@ -1,30 +1,32 @@
 package entity;
 
+import io.quarkus.oidc.OidcTenantConfig;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
+@Table(name = "usuario")
 @Entity
 @ApplicationScoped
-//Fiz toda a Entidade já?
 public class UsuarioEntity {
 
+    //Perguntar sobre essa geração de sequencia
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",columnDefinition = "serial")
     private Long id;
 
-    @Column
+    @Column(name = "avatar")
     private String avatar;
 
-    @Column
+    @Column(name = "username",nullable = false)
     private String username;
 
 }
