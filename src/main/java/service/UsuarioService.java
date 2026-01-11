@@ -1,6 +1,6 @@
 package service;
 
-import DTO.CriarUsuarioDTO;
+import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
 import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,7 +22,7 @@ public class UsuarioService {
     final UsuarioRepository usuarioRepository;
 
     @Transactional
-    public CriarUsuarioDTOResponse adicionarUsuario(CriarUsuarioDTO usuarioDTO){
+    public CriarUsuarioDTOResponse adicionarUsuario(CriarUsuarioDTORequest usuarioDTO){
        List<UsuarioEntity> listaUsuarios  = usuarioRepository.verificarUsuarioExiste(usuarioDTO);
 
        if(listaUsuarios.isEmpty()){

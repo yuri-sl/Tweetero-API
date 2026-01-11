@@ -1,14 +1,12 @@
 package resource;
 
-import DTO.CriarUsuarioDTO;
+import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
-import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.jboss.resteasy.reactive.RestResponse;
 import service.UsuarioService;
@@ -24,7 +22,7 @@ public class UsuarioResource {
     final UsuarioService usuarioService;
 
     @POST
-    public RestResponse<?> criarUsuarioNovo(@RequestBody CriarUsuarioDTO usuarioDTO){
+    public RestResponse<?> criarUsuarioNovo(@RequestBody CriarUsuarioDTORequest usuarioDTO){
         try {
             CriarUsuarioDTOResponse criarUsuarioDTOResponse = usuarioService.adicionarUsuario(usuarioDTO);
             return RestResponse.status(Response.Status.CREATED,criarUsuarioDTOResponse);

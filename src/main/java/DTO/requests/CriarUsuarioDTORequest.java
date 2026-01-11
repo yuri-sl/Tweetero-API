@@ -1,4 +1,4 @@
-package DTO;
+package DTO.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class CriarUsuarioDTO {
+public class CriarUsuarioDTORequest {
     private String username;
     private String avatar;
 }
