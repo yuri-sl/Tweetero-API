@@ -38,12 +38,7 @@ public class UsuarioService {
                    .username(userCreated.getUsername())
                    .build();
        } else{
-           //Não sei se foi a melhor abordagem isso daqui
-           return CriarUsuarioDTOResponse.builder()
-                   .id((long) -99)
-                   .avatar(usuarioDTO.getAvatar())
-                   .username(usuarioDTO.getUsername())
-                   .build();
+           throw new java.lang.RuntimeException("Usuario ja existente no sistema");
        }
     };
 }

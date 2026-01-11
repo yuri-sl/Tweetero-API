@@ -25,16 +25,13 @@ public class UsuarioResource {
 
     @POST
     public RestResponse<?> criarUsuarioNovo(@RequestBody CriarUsuarioDTO usuarioDTO){
-        try{
-            CriarUsuarioDTOResponse criarUsuarioDTOResponse =  usuarioService.adicionarUsuario(usuarioDTO);
-            if(criarUsuarioDTOResponse.getId().equals((long)-99)){
-                return RestResponse.status(Response.Status.CONFLICT);
-            }
+        try {
+            CriarUsuarioDTOResponse criarUsuarioDTOResponse = usuarioService.adicionarUsuario(usuarioDTO);
             return RestResponse.status(Response.Status.CREATED,criarUsuarioDTOResponse);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
-
+        catch (RuntimeException e) {
+            return RestResponse.status(Response.Status.CONFLICT,e.getMessage());
+        }
     };
     @GET
     public RestResponse<?> teste(){
