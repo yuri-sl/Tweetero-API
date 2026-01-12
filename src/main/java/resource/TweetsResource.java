@@ -21,12 +21,12 @@ public class TweetsResource {
     final TweetsService tweetsService;
 
     @POST
-    public RestResponse<CriarTweetDTOResponse> criarTweetPorUsuario(CriarTweetDTORequest criarTweetDTORequest){
+    public RestResponse<?> criarTweetPorUsuario(CriarTweetDTORequest criarTweetDTORequest){
         try{
             CriarTweetDTOResponse criarTweetDTOResponse = tweetsService.insertTweet(criarTweetDTORequest);
             return RestResponse.status(RestResponse.Status.CREATED,criarTweetDTOResponse);
         } catch (RuntimeException e) {
-            throw new RuntimeException(e.getMessage());
+            return RestResponse.status(RestResponse.Status.BAD_REQUEST,e.getMessage());
         }
 
     };
