@@ -53,5 +53,8 @@ public class TweetsService {
     public List<TweetsEntity> buscarTweetsUsuarios(){
         return tweetsRepository.listAll();
     }
+    public List<TweetsEntity> buscarTweetsUsuariosPorId(Long idUsuario){
+        return tweetsRepository.fetchTweetsByUserId(idUsuario);
+    }
 
 }

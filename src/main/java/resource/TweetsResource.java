@@ -7,9 +7,7 @@ import entity.TweetsEntity;
 import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import lombok.AllArgsConstructor;
 import org.jboss.resteasy.reactive.RestResponse;
 import service.TweetsService;
@@ -39,6 +37,16 @@ public class TweetsResource {
             return RestResponse.status(RestResponse.Status.OK,listaTweetsUsuarios);
         }catch (RuntimeException e){
             throw new RuntimeException(e.getMessage());
+        }
+    }
+    @GET
+    @Path("/user/{userId}")
+    public RestResponse<List<TweetsEntity>> buscarTweetsUsuariosPorId(@PathParam("userId") Long userIdSearched){
+        try{
+            List<TweetsEntity> listaTweetsUsuariosId = tweetsService.buscarTweetsUsuariosPorId(userIdSearched);
+            return RestResponse.status(RestResponse.Status.OK,listaTweetsUsuariosId);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
     }
 
