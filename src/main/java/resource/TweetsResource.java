@@ -36,7 +36,7 @@ public class TweetsResource {
     public RestResponse<List<TweetsEntity>> buscarTweetsUsuarios(){
         try{
             List<TweetsEntity> listaTweetsUsuarios = tweetsService.buscarTweetsUsuarios();
-            return RestResponse.status(RestResponse.Status.FOUND,listaTweetsUsuarios);
+            return RestResponse.status(RestResponse.Status.OK,listaTweetsUsuarios);
         }catch (RuntimeException e){
             throw new RuntimeException(e.getMessage());
         }
