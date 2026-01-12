@@ -49,9 +49,9 @@ public class TweetsService {
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
-
-
-
+    }
+    public List<TweetsEntity> buscarTweetsUsuarios(){
+        return tweetsRepository.listAll();
     }
 
 }
