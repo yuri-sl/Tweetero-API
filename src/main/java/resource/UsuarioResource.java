@@ -2,6 +2,7 @@ package resource;
 
 import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
+import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -9,6 +10,7 @@ import jakarta.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.jboss.resteasy.reactive.RestResponse;
+import repository.UsuarioRepository;
 import service.UsuarioService;
 
 @AllArgsConstructor
@@ -20,6 +22,7 @@ import service.UsuarioService;
 @ApplicationScoped
 public class UsuarioResource {
     final UsuarioService usuarioService;
+    final UsuarioRepository usuarioRepository;
 
     @POST
     public RestResponse<?> criarUsuarioNovo(@RequestBody CriarUsuarioDTORequest usuarioDTO){
@@ -34,5 +37,12 @@ public class UsuarioResource {
     @GET
     public RestResponse<?> teste(){
         return RestResponse.status(RestResponse.Status.OK);
+    }
+
+    @Path("/encontrar")
+    @GET
+    public RestResponse<UsuarioEntity> encontrarUsuarioId( Long usuario_id){
+        UsuarioEntity usuarioEntityEncontrado = usuarioRepository.encontrarUsuarioId(usuario_id);
+        return RestResponse.status(RestResponse.Status.FOUND,usuarioEntityEncontrado);
     }
 }

@@ -20,4 +20,8 @@ public class UsuarioRepository implements PanacheRepository<UsuarioEntity> {
     public List<UsuarioEntity> buscarUsuarioPorId(Long userId){
         return find("where id = ?1",userId).stream().toList();
     }
+
+    public UsuarioEntity encontrarUsuarioId(long user_id){
+        return find("id",user_id).firstResult();
+    }
 }

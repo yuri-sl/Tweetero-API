@@ -4,12 +4,12 @@ package service;
 import DTO.requests.CriarTweetDTORequest;
 import DTO.responses.CriarTweetDTOResponse;
 import DTO.responses.CriarUsuarioDTOResponse;
+import DTO.responses.LerTweetsDTOResponse;
 import entity.TweetsEntity;
 import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import repository.TweetsRepository;
 import repository.UsuarioRepository;
 
@@ -48,9 +48,14 @@ public class TweetsService {
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
+    }
 
-
-
+    public List<?> buscarTodosTweets(){
+        try{
+            return tweetsRepository.listAll();
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
