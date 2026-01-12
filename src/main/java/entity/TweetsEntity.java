@@ -14,12 +14,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "tweet")
 @Builder
-@ApplicationScoped
 public class TweetsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",columnDefinition = "serial")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "text",nullable = false)

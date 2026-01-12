@@ -36,6 +36,7 @@ public class TweetsService {
 
             TweetsEntity tweetCriado = TweetsEntity.builder()
                     .text(criarTweetDTORequest.getText())
+                    .usuarioEntity(usuarioEncontrado)
                     .build();
             tweetsRepository.persist(tweetCriado);
             tweetsRepository.flush();

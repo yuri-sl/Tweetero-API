@@ -14,13 +14,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "usuario")
 @Entity
-@ApplicationScoped
 public class UsuarioEntity {
 
     //Perguntar sobre essa geração de sequencia
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",columnDefinition = "serial")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "avatar")

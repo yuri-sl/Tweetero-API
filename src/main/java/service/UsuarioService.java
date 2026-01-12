@@ -15,8 +15,6 @@ import java.util.List;
 @ApplicationScoped
 //Dá erro se eu tirar o AllArgsConstructor do UsuarioService. Pq q eu preciso dele?
 public class UsuarioService {
-    @Inject
-    UsuarioEntity usuarioEntity;
 
 
     final UsuarioRepository usuarioRepository;
