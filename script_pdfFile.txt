@@ -1,0 +1,11 @@
+app.storage.dir=uploads/pdfs
+
+
+create table pdf_file (
+	id bigserial primary key,
+	originalName varchar(100) not null,
+	storedName varchar(150) not null unique,
+	contentType varchar(200) not null,
+	size bigInt not null,
+	created_at timestamptz not null default now()
+);
