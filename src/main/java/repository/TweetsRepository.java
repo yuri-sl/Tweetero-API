@@ -14,6 +14,6 @@ import java.util.List;
 public class TweetsRepository implements PanacheRepository<TweetsEntity> {
 
     public List<TweetsEntity> fetchTweetsByUserId(Long id){
-        return find("usuarioEntity.id = ?1",id).list();
+        return find("user.id = ?1",id).list();
     }
 }

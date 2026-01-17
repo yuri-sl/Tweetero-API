@@ -26,6 +26,6 @@ public class TweetsEntity {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",nullable = false)
-    private UsuarioEntity usuarioEntity;
+    private UsuarioEntity user;
 
 }

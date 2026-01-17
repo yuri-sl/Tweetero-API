@@ -9,7 +9,6 @@ import entity.UsuarioEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import repository.TweetsRepository;
 import repository.UsuarioRepository;
 
@@ -36,7 +35,7 @@ public class TweetsService {
 
             TweetsEntity tweetCriado = TweetsEntity.builder()
                     .text(criarTweetDTORequest.getText())
-                    .usuarioEntity(usuarioEncontrado)
+                    .user(usuarioEncontrado)
                     .build();
             tweetsRepository.persist(tweetCriado);
             tweetsRepository.flush();
