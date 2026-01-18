@@ -6,6 +6,7 @@ import DTO.responses.CriarTweetDTOResponse;
 import entity.TweetsEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
 import org.jboss.resteasy.reactive.RestResponse;
 import service.TweetsService;
@@ -19,8 +20,14 @@ public class TweetsResource {
     final TweetsService tweetsService;
 
     @POST
-    public RestResponse<CriarTweetDTOResponse> criarTweetPorUsuario(CriarTweetDTORequest criarTweetDTORequest){
+    public RestResponse<?> criarTweetPorUsuario(CriarTweetDTORequest criarTweetDTORequest){
         try{
+            if(criarTweetDTORequest.getText() == null || criarTweetDTORequest.getUserId() == null){
+                return RestResponse.status(Response.Status.BAD_REQUEST,"Todos os campos devem estar preenchidos");
+            }
+            if(criarTweetDTORequest.getText().isBlank() ){
+                return RestResponse.status(Response.Status.BAD_REQUEST,"Todos os campos devem ter conteúdo");
+            }
             CriarTweetDTOResponse criarTweetDTOResponse = tweetsService.insertTweet(criarTweetDTORequest);
             return RestResponse.status(RestResponse.Status.CREATED,criarTweetDTOResponse);
         } catch (RuntimeException e) {

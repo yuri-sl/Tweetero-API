@@ -3,10 +3,14 @@ package service;
 import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
 import entity.UsuarioEntity;
+import io.netty.handler.codec.http2.Http2Exception;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
+import org.jboss.resteasy.reactive.RestResponse;
 import repository.UsuarioRepository;
 
 import java.util.List;

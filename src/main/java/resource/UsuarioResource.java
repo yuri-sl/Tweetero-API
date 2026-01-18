@@ -24,6 +24,12 @@ public class UsuarioResource {
     @POST
     public RestResponse<?> criarUsuarioNovo(@RequestBody CriarUsuarioDTORequest usuarioDTO){
         try {
+            if(usuarioDTO.getUsername() == null || usuarioDTO.getAvatar() == null){
+                return RestResponse.status(Response.Status.BAD_REQUEST,"Todos os campos devem estar preenchidos");
+            }
+            if(usuarioDTO.getUsername().isBlank() || usuarioDTO.getAvatar().isBlank() ){
+                return RestResponse.status(Response.Status.BAD_REQUEST,"Todos os campos devem ter conteúdo");
+            }
             CriarUsuarioDTOResponse criarUsuarioDTOResponse = usuarioService.adicionarUsuario(usuarioDTO);
             return RestResponse.status(Response.Status.CREATED,criarUsuarioDTOResponse);
         }
