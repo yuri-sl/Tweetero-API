@@ -2,6 +2,7 @@ package resource;
 
 import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
+import DTO.responses.HealthDTOResponse;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -37,8 +38,12 @@ public class UsuarioResource {
             return RestResponse.status(Response.Status.CONFLICT,e.getMessage());
         }
     };
+
     @GET
-    public RestResponse<?> teste(){
-        return RestResponse.status(RestResponse.Status.OK);
+    public RestResponse<HealthDTOResponse> teste(){
+        HealthDTOResponse healthDTOResponse = HealthDTOResponse.builder()
+                .mensagem("Estou retornando uma mensagem")
+                .build();
+        return RestResponse.status(RestResponse.Status.OK,healthDTOResponse);
     }
 }
