@@ -2,6 +2,7 @@ package service;
 
 import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
+import DTO.responses.FetchUserResponseDTO;
 import entity.UsuarioEntity;
 import io.netty.handler.codec.http2.Http2Exception;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -10,6 +11,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Fetch;
 import org.jboss.resteasy.reactive.RestResponse;
 import repository.UsuarioRepository;
 
@@ -43,4 +45,11 @@ public class UsuarioService {
            throw new java.lang.RuntimeException("Usuario ja existente no sistema");
        }
     };
+
+    public FetchUserResponseDTO buscarUsuarioPorNome(String username){
+        UsuarioEntity user =  this.usuarioRepository.buscarUsuarioPorNome(username);
+        FetchUserResponseDTO fetchUserResponseDTO = FetchUserResponseDTO.builder()
+                .id(user.getId()).name(user.getUsername()).avatar(user.getAvatar()).build();
+        return  fetchUserResponseDTO;
+    }
 }

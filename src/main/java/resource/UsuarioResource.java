@@ -2,6 +2,7 @@ package resource;
 
 import DTO.requests.CriarUsuarioDTORequest;
 import DTO.responses.CriarUsuarioDTOResponse;
+import DTO.responses.FetchUserResponseDTO;
 import DTO.responses.HealthDTOResponse;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
@@ -38,6 +39,16 @@ public class UsuarioResource {
             return RestResponse.status(Response.Status.CONFLICT,e.getMessage());
         }
     };
+    @GET
+    @Path("/{username}")
+    public RestResponse<FetchUserResponseDTO> buscarUsuarioNome(@PathParam("username") String username){
+        try{
+            FetchUserResponseDTO respostaUsuarioEncontradoNome =  usuarioService.buscarUsuarioPorNome(username);
+            return  RestResponse.status(RestResponse.Status.OK,respostaUsuarioEncontradoNome);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @GET
     public RestResponse<HealthDTOResponse> teste(){
