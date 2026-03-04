@@ -1,5 +1,9 @@
 # tweteroo-api
 
+This is a project that allows a user to register himself and create posts associated with its account.
+
+Upon creation the program also supports a 
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
