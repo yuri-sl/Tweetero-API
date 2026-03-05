@@ -25,6 +25,14 @@ public class UsuarioService {
 
     final UsuarioRepository usuarioRepository;
 
+    public UsuarioEntity fazerLoginSistema(String username){
+        UsuarioEntity usuarioEncontrado = usuarioRepository.buscarUsuarioPorNome(username);
+        if(usuarioEncontrado == null) {
+            throw new IllegalArgumentException("usuário não encontrado");
+        }
+        return usuarioEncontrado;
+    }
+
     @Transactional
     public CriarUsuarioDTOResponse adicionarUsuario(CriarUsuarioDTORequest usuarioDTO){
        List<UsuarioEntity> listaUsuarios  = usuarioRepository.verificarUsuarioExiste(usuarioDTO);

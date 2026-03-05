@@ -39,6 +39,15 @@ public class UsuarioResource {
             return RestResponse.status(Response.Status.CONFLICT,e.getMessage());
         }
     };
+    @POST
+    @Path("/auth")
+    public RestResponse<?> fazerLogin(String username){
+        try{
+            return  RestResponse.status(Response.Status.fromStatusCode(200),usuarioService.fazerLoginSistema(username));
+        } catch (RuntimeException e) {
+            return RestResponse.status(RestResponse.Status.BAD_REQUEST,e.getMessage());
+        }
+    }
     @GET
     @Path("/{username}")
     public RestResponse<FetchUserResponseDTO> buscarUsuarioNome(@PathParam("username") String username){
