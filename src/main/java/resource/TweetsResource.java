@@ -37,7 +37,6 @@ public class TweetsResource {
 
     };
     @GET
-    @RolesAllowed("USER")
     public RestResponse<List<TweetsEntity>> buscarTweetsUsuarios(){
         try{
             List<TweetsEntity> listaTweetsUsuarios = tweetsService.buscarTweetsUsuarios();
